@@ -1,52 +1,519 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Practice Project</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tara Samarasekara | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+  <style>
+    :root {
+      --bg-main: #0b0f19;
+      --bg-card: #131c2e;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --badge-bg: rgba(99, 102, 241, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* Hero Section with Photo */
+    .hero {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 35px;
+      margin-bottom: 30px;
+    }
+
+    .hero-avatar {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      flex-shrink: 0;
+    }
+
+    .hero-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 2px solid rgba(99, 102, 241, 0.5);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.25);
+      display: block;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .hero-info h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .hero-info h3 {
+      font-size: 1.05rem;
+      color: var(--accent);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .contact-list {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px 25px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .contact-list a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-list a:hover {
+      color: var(--accent);
+    }
+
+    .contact-list i {
+      color: var(--accent);
+      margin-right: 6px;
+    }
+
+    .links-group {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Sections */
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 35px;
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .section-title i {
+      color: var(--accent);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-block h4 {
+      font-size: 0.95rem;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-tag {
+      background: var(--badge-bg);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      color: #cbd5e1;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 20px;
+    }
+
+    .project-item {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      padding: 22px;
+      border-radius: 14px;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .project-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .project-tech {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .project-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      padding-left: 15px;
+      position: relative;
+    }
+
+    .project-desc::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* Education & Leadership */
+    .info-group {
+      margin-bottom: 20px;
+    }
+
+    .info-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+
+    .info-title {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .info-date {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .info-sub {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .languages-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .lang-item {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+    }
+
+    .lang-item span {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .contact-list {
+        justify-content: center;
+      }
+      .links-group {
+        justify-content: center;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to my website</h1>
-    <h2>About me </h2>
-    <p> My name is Tara Samarasekara. I am a student of icbt campus . </p>
-        <p>i did my higher diploma in computing science and software engineering.</p>
 
-        <h2> My Skills</h2>
-        <ul>
-            <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-        <li>Python </li>
-        <li>Java</li>
-        <li>SQL</li>
-        <li>PHP </li>
+  <div class="container">
 
+    <!-- Hero / Header with Image -->
+    <header class="hero">
+      <div class="hero-avatar">
+        <!-- මෙතනට ඔයාගේ photo එකේ link එක හෝ file name එක දෙන්න -->
+        <img src="upload/me.jpg" alt="Tara Samarasekara">
+      </div>
 
-        </ul>
+      <div class="hero-content">
+        <div class="hero-info">
+          <h1>Tara Samarasekara</h1>
+          <h3>Software Engineering Graduate | Full-Stack & Mobile Developer</h3>
+          <div class="contact-list">
+            <div><i class="fa-solid fa-location-dot"></i> Colombo, Sri Lanka</div>
+            <div><i class="fa-solid fa-envelope"></i> <a href="mailto:oshaditara@gmail.com">oshaditara@gmail.com</a></div>
+            <div><i class="fa-solid fa-phone"></i> +94 76 703 9214</div>
+          </div>
+        </div>
+        <div class="links-group">
+          <a href="https://linkedin.com/in/tara-samarasekara" target="_blank" class="btn btn-outline"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          <a href="https://github.com/oshaditara" target="_blank" class="btn btn-primary"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+      </div>
+    </header>
 
-    <a href="https://github.com/oshaditara" target="_blank">Check out my GitHub profile</a >
-    <br>
-    <img src="upload/me.jpg" alt="My Image">
+    <!-- Professional Summary -->
+    <section class="section-card">
+      <h2 class="section-title"><i class="fa-solid fa-user"></i> Professional Summary</h2>
+      <p style="color: var(--text-secondary); font-size: 0.95rem;">
+        Motivated and detail-oriented Software Engineering graduate with practical experience in full-stack web application development, native Android solutions, and UI/UX prototyping[cite: 1]. Proficient in Java, PHP, JavaScript, SQLite, and MySQL, with a firm foundation in Agile methodologies and relational database design[cite: 1]. Proven track record of strong leadership, public speaking, and team management cultivated through senior school leadership and extracurricular activities[cite: 1].
+      </p>
+    </section>
+
+    <!-- Technical Skills -->
+    <section class="section-card">
+      <h2 class="section-title"><i class="fa-solid fa-code"></i> Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-block">
+          <h4>Programming & Web</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">JavaScript (ES6+)</span>
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h4>Mobile & Databases</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Android Studio</span>
+            <span class="skill-tag">SQLite</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Normalization</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h4>Tools & Frameworks</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Git & GitHub</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">RESTful APIs</span>
+            <span class="skill-tag">Agile (Scrum)</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h4>Core Competencies</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Full-Stack Development</span>
+            <span class="skill-tag">Mobile App Engineering</span>
+            <span class="skill-tag">UI/UX Wireframing</span>
+            <span class="skill-tag">CRUD Operations</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Projects -->
+    <section class="section-card">
+      <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> Key Projects</h2>
+      <div class="projects-grid">
+        
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-title">Bfresh E-Commerce Platform</span>
+            <span class="project-tech">PHP • MySQL • JS • HTML/CSS</span>
+          </div>
+          <p class="project-desc">Architected a full-stack e-commerce web platform for product inventory tracking and customer order management[cite: 1].</p>
+          <p class="project-desc">Designed and normalized database schemas for product catalogs, user accounts, and billing workflows[cite: 1].</p>
+          <p class="project-desc">Utilized Agile Scrum cycles to deliver modular functional requirements systematically[cite: 1].</p>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-title">TechCare Mobile Application</span>
+            <span class="project-tech">Android Studio • Java • SQLite</span>
+          </div>
+          <p class="project-desc">Engineered a native Android application designed to manage repair requests for electronic devices[cite: 1].</p>
+          <p class="project-desc">Implemented local SQLite storage for multi-device ticket handling and offline user access[cite: 1].</p>
+          <p class="project-desc">Integrated intuitive UI screens with strict input validation to ensure secure data submission[cite: 1].</p>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-title">MediCare Plus Hospital System</span>
+            <span class="project-tech">PHP • MySQL • Bootstrap</span>
+          </div>
+          <p class="project-desc">Built a web portal for doctor appointment scheduling, staff coordination, and medical record handling[cite: 1].</p>
+          <p class="project-desc">Implemented role-based access control and dynamic queries for secure clinic administration[cite: 1].</p>
+        </div>
+
+        <div class="project-item">
+          <div class="project-header">
+            <span class="project-title">KMC Event Platform</span>
+            <span class="project-tech">RESTful Services • JavaScript</span>
+          </div>
+          <p class="project-desc">Designed an event hub applying Service-Oriented Computing principles to streamline public announcements[cite: 1].</p>
+          <p class="project-desc">Integrated client-side asynchronous fetch requests for efficient real-time UI updates[cite: 1].</p>
+        </div>
+
+        <div class="project-item" style="grid-column: 1 / -1;">
+          <div class="project-header">
+            <span class="project-title">Telecommunications Business Analytics</span>
+            <span class="project-tech">R • RStudio • CRISP-DM</span>
+          </div>
+          <p class="project-desc">Completed a comprehensive customer churn business analytics assignment applying the CRISP-DM methodology[cite: 1].</p>
+          <p class="project-desc">Built and evaluated a multiple linear regression model utilizing the R programming language[cite: 1].</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="section-card">
+      <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+      <div class="info-group">
+        <div class="info-header">
+          <span class="info-title">Higher National Diploma in Software Engineering</span>
+          <span class="info-date">Completed | 2026</span>
+        </div>
+        <div class="info-sub">ICBT Campus (in collaboration with Cardiff Metropolitan University) — Colombo, Sri Lanka[cite: 1]</div>
+      </div>
+      <br>
+      <div class="info-group">
+        <div class="info-header">
+          <span class="info-title">G.C.E. Advanced Level (Arts Stream)</span>
+          <span class="info-date">Completed</span>
+        </div>
+        <div class="info-sub">Gothami Balika Vidyalaya — History: A | ICT: C | Japanese: S[cite: 1]</div>
+      </div>
+      <br>
+      <div class="info-group">
+        <div class="info-header">
+          <span class="info-title">G.C.E. Ordinary Level</span>
+          <span class="info-date">Completed</span>
+        </div>
+        <div class="info-sub">Gothami Balika Vidyalaya — Passed with 4 Distinctions (A) and 5 Very Good Passes (B)[cite: 1]</div>
+      </div>
+    </section>
+
+    <!-- Certifications & Leadership -->
+    <section class="section-card">
+      <h2 class="section-title"><i class="fa-solid fa-award"></i> Certifications & Leadership</h2>
+      <div class="info-group">
+        <div class="info-title">Diploma in English</div>
+      </div>
+      <br>
+      <div class="info-group">
+        <div class="info-title">Senior School Prefect (Gothami Balika Vidyalaya)</div>
+        <p class="info-sub">Coordinated annual school events, directed disciplinary teams, and led student body initiatives[cite: 2].</p>
+      </div>
+      <br>
+      <div class="info-group">
+        <div class="info-title">Debating & Public Speaking</div>
+        <p class="info-sub">Represented school in inter-school and intra-school debating competitions[cite: 2].</p>
+      </div>
+      <br>
+      <div class="info-group">
+        <div class="info-title">School Sports & Athletics</div>
+        <p class="info-sub">Represented house athletic teams, fostering team discipline and leadership[cite: 2].</p>
+      </div>
+    </section>
+
+    <!-- Languages -->
+    <section class="section-card">
+      <h2 class="section-title"><i class="fa-solid fa-earth-americas"></i> Languages</h2>
+      <div class="languages-wrapper">
+        <div class="lang-item"><strong>Sinhala</strong> <span>Native / Bilingual</span></div>
+        <div class="lang-item"><strong>English</strong> <span>Professional Working Proficiency</span></div>
+        <div class="lang-item"><strong>Japanese</strong> <span>Basic Proficiency</span></div>
+      </div>
+    </section>
+
+  </div>
 
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>
